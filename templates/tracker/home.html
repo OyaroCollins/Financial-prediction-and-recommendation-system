@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFinance - Home</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            background-color: #1a1a2e;
+            padding: 15px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #e94560;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e94560;
+        }
+
+        .btn-login {
+            background-color: #e94560;
+            padding: 8px 22px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        .btn-login:hover {
+            background-color: #c73a52;
+            color: #ffffff;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 80px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            min-height: 400px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 46px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content h1 span {
+            color: #e94560;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-buttons a {
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-block;
+            margin-right: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #e94560;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #c73a52;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffffff;
+            color: #1a1a2e;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            font-size: 120px;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 60px 80px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .features h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #1a1a2e;
+        }
+
+        .features h2 span {
+            color: #e94560;
+        }
+
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #f4f6f9;
+            padding: 30px 25px;
+            border-radius: 10px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666666;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            padding: 60px 80px;
+            background-color: #f4f6f9;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #1a1a2e;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            width: 220px;
+            text-align: center;
+        }
+
+        .step-number {
+            background-color: #e94560;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 auto 15px auto;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 13px;
+            color: #666666;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 60px 80px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #1a1a2e;
+        }
+
+        .about h2 span {
+            color: #e94560;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            text-align: left;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: #555555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .about-icon {
+            font-size: 100px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1a1a2e;
+            color: #cccccc;
+            text-align: center;
+            padding: 20px 80px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">Smart<span>Finance</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">Learn More</a>
+            <a href="#about">About</a>
+           <a href="{% url 'login' %}" class="btn-login">Login</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Track Smarter.<br>Spend <span>Wiser.</span></h1>
+            <p>An intelligent finance tracking system that predicts your cash flow and gives personalized recommendations for your small business.</p>
+            <div class="hero-buttons">
+                <a href="{% url 'register' %}" class="btn-primary">Get Started Free</a>
+                <a href="#how-it-works" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            📊
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <h2>Why <span>SmartFinance?</span></h2>
+        <div class="feature-cards">
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Expense Tracking</h3>
+                <p>Record income and expenses easily. Know exactly where your money goes every month.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h3>Smart Predictions</h3>
+                <p>See forecasts of your future cash flow based on your spending patterns and trends.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>Recommendations</h3>
+                <p>Get personalized tips and alerts when spending is unusually high or budgets are at risk.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Create Account</h4>
+                <p>Sign up in seconds with your email and a password.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Add Transactions</h4>
+                <p>Log your income and expenses with categories and dates.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Get Insights</h4>
+                <p>View predictions and recommendations based on your data.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Make Better Decisions</h4>
+                <p>Use the insights to budget wisely and grow your business.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <h2>About <span>SmartFinance</span></h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>SmartFinance is a final year project developed at the <strong>Catholic University of Eastern Africa</strong> in partial fulfillment of the requirements for the Degree in Computer Science.</p>
+                <p>Built by <strong>Collins Oyaro Ondieki</strong>, this system is designed to help small businesses in Kenya and beyond track their finances, predict cash flow, and receive intelligent recommendations — all in one simple platform.</p>
+                <p>Our mission is to bridge the gap between basic finance tracking tools and advanced, AI-powered decision-support systems, making intelligent financial management accessible to every small business owner.</p>
+            </div>
+            <div class="about-icon">
+                🎓
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 SmartFinance. All rights reserved. | Built for small businesses.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

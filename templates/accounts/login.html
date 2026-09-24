@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFinance - Login</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* ===== LOGIN CONTAINER ===== */
+        .login-wrapper {
+            display: flex;
+            width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        /* ===== LEFT SIDE (Branding) ===== */
+        .login-brand {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            padding: 50px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .login-brand .brand-logo {
+            color: #e94560;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .login-brand .brand-logo span {
+            color: #ffffff;
+        }
+
+        .login-brand .brand-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .login-brand p {
+            font-size: 14px;
+            color: #cccccc;
+            margin-top: 10px;
+        }
+
+        /* ===== RIGHT SIDE (Form) ===== */
+        .login-form {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-form h2 {
+            font-size: 28px;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .login-form .subtitle {
+            font-size: 14px;
+            color: #888888;
+            margin-bottom: 30px;
+        }
+
+        /* ===== FORM ELEMENTS ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #e94560;
+        }
+
+        .error-message {
+            color: #e94560;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #e94560;
+            color: #ffffff;
+            border: none;
+            padding: 13px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #c73a52;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .register-link a {
+            color: #e94560;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .back-home a {
+            color: #888888;
+            text-decoration: none;
+        }
+
+        .back-home a:hover {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <!-- LEFT BRANDING -->
+        <div class="login-brand">
+            <div class="brand-logo">Smart<span>Finance</span></div>
+            <div class="brand-icon">🔐</div>
+            <p>Welcome back!<br>Log in to manage your finances.</p>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="login-form">
+            <h2>Login</h2>
+            <p class="subtitle">Enter your credentials to continue</p>
+
+            <!-- Error message from Django backend -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message" style="display:block; margin-bottom:15px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Form posts to Django's login view -->
+            <form id="loginForm" method="POST" action="{% url 'login' %}">
+                <!-- CSRF token required for security -->
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="off">
+                    <div class="error-message" id="usernameError">Please enter your username</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                    <div class="error-message" id="passwordError">Please enter your password</div>
+                </div>
+
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+
+            <p class="register-link">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+            <p class="back-home"><a href="{% url 'login' %}">&larr; Back to Home</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Client-side form validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            // Get values
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Get error elements
+            const usernameError = document.getElementById('usernameError');
+            const passwordError = document.getElementById('passwordError');
+
+            // Reset error messages
+            usernameError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            // Validate
+            let hasError = false;
+
+            if (username === '') {
+                usernameError.textContent = 'Please enter your username';
+                usernameError.style.display = 'block';
+                hasError = true;
+            }
+
+            if (password === '') {
+                passwordError.textContent = 'Please enter your password';
+                passwordError.style.display = 'block';
+                hasError = true;
+            }
+
+            // If no errors, prevent default and submit the form manually
+            if (hasError) {
+                e.preventDefault();  // Block form submission if validation fails
+            }
+            // If no errors, allow the form to submit normally to Django
+        });
+    </script>
+
+</body>
+</html>
